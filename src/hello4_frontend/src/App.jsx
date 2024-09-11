@@ -1,30 +1,29 @@
-import { useState } from 'react';
-import { hello4_backend } from 'declarations/hello4_backend';
+import React from 'react';
+import './App.css';
 
 function App() {
-  const [greeting, setGreeting] = useState('');
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    hello4_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
-  }
+  const groceryItems = [
+    'Apples',
+    'Bananas',
+    'Bread',
+    'Milk',
+    'Eggs',
+    'Chicken',
+    'Carrots',
+    'Potatoes',
+    'Tomatoes',
+    'Spinach',
+  ];
 
   return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
+    <div className="app-container">
+      <h1>Grocery List</h1>
+      <ul className="grocery-list">
+        {groceryItems.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
